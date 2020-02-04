@@ -1,0 +1,8 @@
+; TMT Certified 5-12-2018 10C12
+; @File: Rocket Motor for First Iteration.eng, @Pts-I: 3, @Pts-O: 3, @Sm: 0, @CO: 5%
+; @TI: 13498.75, @TIa: 13496.25, @TIe: 0.0%, @ThMax: 1000.0, @ThAvg: 909.007, @Tb: 14.85
+; Exported using ThrustCurveTool, www.ThrustGear.com
+N909 153 595 4-6-8 11 11 ICLR
+  1.0        1000.0
+  13.0       1000.0
+  15.0       0.0
