@@ -629,7 +629,7 @@
                             <KnownMass>1500.0</KnownMass>
                             <Density>0.0</Density>
                             <Material></Material>
-                            <Name>Fill+Feed System</Name>
+                            <Name>Fill_Feed System</Name>
                             <KnownCG>-350.00000000000006</KnownCG>
                             <UseKnownCG>1</UseKnownCG>
                             <Xb>-350.00000000000006</Xb>
