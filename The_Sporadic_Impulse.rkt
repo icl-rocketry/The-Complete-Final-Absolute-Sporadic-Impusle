@@ -493,7 +493,7 @@
                             <KnownMass>6000.0</KnownMass>
                             <Density>680.0</Density>
                             <Material>Cardboard</Material>
-                            <Name>Inner Tube - Engine Mass</Name>
+                            <Name>Inner Tube_Engine Mass</Name>
                             <KnownCG>0.0</KnownCG>
                             <UseKnownCG>1</UseKnownCG>
                             <Xb>-950.0000000000001</Xb>
