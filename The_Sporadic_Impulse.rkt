@@ -283,7 +283,7 @@
                     <KnownMass>37.128598617185645</KnownMass>
                     <Density>680.0</Density>
                     <Material>Cardboard</Material>
-                    <Name>Body tube</Name>
+                    <Name>Body tube 2</Name>
                     <KnownCG>0.0</KnownCG>
                     <UseKnownCG>0</UseKnownCG>
                     <Xb>0.0</Xb>
@@ -328,7 +328,7 @@
                     <KnownMass>658.0</KnownMass>
                     <Density>950.0</Density>
                     <Material>Kraft phenolic</Material>
-                    <Name>Body tube</Name>
+                    <Name>Body tube 3</Name>
                     <KnownCG>0.0</KnownCG>
                     <UseKnownCG>1</UseKnownCG>
                     <Xb>0.0</Xb>
