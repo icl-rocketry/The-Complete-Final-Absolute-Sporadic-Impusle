@@ -19,12 +19,13 @@ vel = [];
 mass = [];
 res = [];
 mach = [];
-hybrid_burn_time = 15;
-rocket.cd = 0.6;
+hybrid_burn_time = 14.85;
+rocket.cd = 0.7;
 rocket.sref = 0.0201;
+rocket.delta_v = rocket.isp*g*log(rocket.mass_init/rocket.mass_final);
 rocket.mass_flow = 1000/(g*rocket.isp);
-booster = readmatrix('K250Curve.csv');
-hybrid = readmatrix('HybridCurve.csv');
+booster = readmatrix('K250Curve');
+hybrid = readmatrix('HybridCurve');
 x = linspace(0,maxT,maxT/step);
 y = 2.*interp1(booster(:,1),booster(:,2),x);
 y(isnan(y)== 1) = 0;
@@ -35,8 +36,8 @@ for i = step:step:maxT
     [~,a,~,rho] = atmosisa(rocket.alt);
     rocket.mach = rocket.vel/a;
     rocket.drag = (0.5.*rho.*rocket.vel.^2.*rocket.cd.*rocket.sref)/(1-rocket.mach^2);
+    rocket.vel = rocket.vel + (rocket.thrust(round(i/step))-(rocket.mass*g)-rocket.drag)*step/rocket.mass;
     rocket.res = (rocket.thrust(round(i/step))-(rocket.mass*g)-rocket.drag)/rocket.mass;
-    rocket.vel = rocket.vel + rocket.res*step;
     rocket.alt = rocket.alt + rocket.vel*step;
     if rocket.mass >= rocket.mass_final
         rocket.mass = rocket.mass - rocket.mass_flow*step;
@@ -47,7 +48,9 @@ for i = step:step:maxT
     mass = [mass rocket.mass];
     res = [res rocket.res];
     mach = [mach rocket.mach];
-
+    if rocket.alt < 0
+        break
+    end
 end
 subplot(2,2,1)
 plot(time,alt)
