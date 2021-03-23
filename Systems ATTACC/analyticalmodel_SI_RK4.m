@@ -38,9 +38,9 @@ rocket_thrust = (hybrid + y);
 
 count = 0;
 
-f = @(v,i,rho,a,idx) (rocket_thrust(idx)-(rocket_mass(idx)*g)-(0.5.*rho.*v.^2.*cd.*sref)/(1-(v./a)^2))./rocket_mass(idx);
 for i = 1:length(tSteps)-1
     disp(i);
+    f = @(v,i,rho,a,idx) (rocket_thrust(idx)-(rocket_mass(idx)*g)-(0.5*rho*v^2*cd*sref)./(1-(v./a)^2))./rocket_mass(idx);
     [~,a,~,rho] = atmosisa(rocket.alt);
     k1 = h*f(rocket_vel(i), tSteps(i),rho,a,i);
     k2 = h*f(rocket_vel(i) + k1/2, tSteps(i)+ h/2,rho,a,i);
