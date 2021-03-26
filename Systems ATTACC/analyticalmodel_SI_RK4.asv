@@ -5,11 +5,11 @@ format long
 rocket.mass_init = 41.996; % initial mass
 rocket.mass_final =30; % final mass
 g = 9.81; % g
-%at time 0
+%at time zero
 rocket_vel = 0; %RK4 Variable % extrapolating acceleration in orde to get v
-rocket_isp = 180; % isp from wiki
+rocket_isp = 180; % isp wiki
 rocket.alt = 0; % alt 0 at t=0
-ti = 0; % initial time
+ti = 0;
 step = 0.001; % time step
 tf = 40; % final time
 tSteps = ti:step:tf; % total run time in steps
@@ -28,7 +28,7 @@ sref = 0.0201;
 rocket.mass_flow = 1000/(g*rocket_isp); % nasa eqn to get mass flow
 %Takes thrust curves, returns variable holding total thrust over time
 booster = readmatrix('K250Curve.csv'); % data from aerotech booster
-hybrid = readmatrix('HybridCurve.csv'); % thurst curve provided
+hybrid = readmatrix('HybridCurve.csv'); % thurst curve rpovided
 x = linspace(0,tf,tf/step); % remove 0 values
 y = 2.*interp1(booster(:,1),booster(:,2),x);
 y(isnan(y)== 1) = 0;
@@ -50,20 +50,20 @@ for i = 1:length(tSteps)-1 % for full time range
     k3 = h*f(rocket_vel(i) + k2/2,tSteps(i)+ h/2,rho,a,i); % interpolate using 2 preceeding for k
     k4 = h*f(rocket_vel(i) + k3, tSteps(i)+ h,rho,a,i); % interpolate using 3 preceeding values for k
     rocket_vel(i+1) = rocket_vel(i) + k1/6 + k2/3 + k3/3 + k4/6; % gain next value of velocity (for next time step), log velocity in array
-    rocket.alt = rocket.alt + rocket_vel(i)*step; % calculate alr=titude based on current velocity and time step
+    rocket.alt = rocket.alt + rocket_vel(i)*step; % calculate alr=titude based on current velocity and 
 %     if rocket_mass(i) >= rocket.mass_final
 %         rocket_mass(i+1) = rocket_mass(i) - rocket.mass_flow*step;
 %     else
 %         rocket_mass(i+1) = rocket_mass(i);
 %     end
 %     alt(end+1) = rocket.alt;
-    vel(end+1) = rocket_vel(i); % write to next array index
+    vel(end+1) = rocket_vel(i);
     time(end+1) = i;
     mass(end+1) = rocket_mass(i);
     mach(end+1) = rocket_vel(i)/a;
     % disp(count+1);
 end
-subplot(2,2,1) % plot as appropriate
+subplot(2,2,1)
 plot(time,alt)
 xlabel('Time (s)')
 ylabel('Altitude (m)')
