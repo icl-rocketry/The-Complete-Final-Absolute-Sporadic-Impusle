@@ -19,6 +19,7 @@ vel = [];
 mass = [];
 res = [];
 mach = [];
+drag = [];
 hybrid_burn_time = 15;
 rocket.cd = 0.6;
 rocket.sref = 0.0201;
@@ -47,7 +48,7 @@ for i = step:step:maxT
     mass = [mass rocket.mass];
     res = [res rocket.res];
     mach = [mach rocket.mach];
-
+    drag = [drag rocket.drag];
 end
 subplot(2,2,1)
 plot(time,alt)

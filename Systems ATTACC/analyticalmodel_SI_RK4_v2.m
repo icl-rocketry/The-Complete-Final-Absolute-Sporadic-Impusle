@@ -38,9 +38,9 @@ hybrid_burn_time = 15;
 mass = [mass_init];
 %Takes thrust curves, returns variable holding total thrust over time
 [thrust,thrust_h] = thrust_curve_maker('K250Curve.csv','HybridCurve.csv',time_final,ts);
-y = zeros(2,40001);
+y = zeros(2,time_final/ts+1);
 % runge kutta step (number of points for rk step)
-h = 0.1; 
+h = 0.01; 
 y0 = [0,0]; % both x' and v' are 0 initially
 y(:,1) = y0;
 vel = [];
@@ -48,6 +48,7 @@ alt = [];
 time = [];
 mach = [];
 res = [];
+drag = [];
 for i = 1:length(tSteps)-1 % for full time range
     % determine local speed of sound and density
 %     if tSteps(i) < 0.744
@@ -64,11 +65,12 @@ for i = 1:length(tSteps)-1 % for full time range
     % function needs to be redefined every loop due to changing constants
     % acceleration = resultant force/mass
     f = @(y,t,a,rho) [y(2);(thrust(i)-(mass(i)*g)-(0.5*rho*y(2)^2*cd*sref)./(1-(y(2)/a)^2))./mass(i)];
-    res(end+1) = (thrust(i)-(mass(i)*g)-(0.5*rho*y(2)^2*cd*sref)./(1-(y(2)/a)^2))./mass(i);
-    k1 = h*f(y(:,i),tSteps(i),rho,a); % interpolate once to get first point
-    k2 = h*f(y(:,i) + k1/2, tSteps(i)+ h/2,rho,a); % interpolate using first point for k
-    k3 = h*f(y(:,i) + k2/2,tSteps(i)+ h/2,rho,a); % interpolate using 2 preceeding for k
-    k4 = h*f(y(:,i) + k3, tSteps(i)+ h,rho,a); % interpolate using 3 preceeding values for k
+    res(end+1) = (thrust(i)-(mass(i)*g)-(0.5*rho*y(2,i)^2*cd*sref)./(1-(y(2,i)/a)^2))./mass(i);
+    drag(end+1) = (0.5*rho*y(2,i)^2*cd*sref)./(1-(y(2,i)/a)^2);
+    k1 = h*f(y(:,i),tSteps(i),a,rho); % interpolate once to get first point
+    k2 = h*f(y(:,i) + k1/2, tSteps(i)+ h/2,a,rho); % interpolate using first point for k
+    k3 = h*f(y(:,i) + k2/2, tSteps(i)+ h/2,a,rho); % interpolate using 2 preceeding for k
+    k4 = h*f(y(:,i) + k3, tSteps(i)+ h,a,rho); % interpolate using 3 preceeding values for k
     y(:,i+1) = y(:,i) + k1/6 + k2/3 + k3/3 + k4/6; % gain next value of velocity (for next time step), log velocity in array
     vel(end+1) = y(2,i); % calculate altitude based on current velocity and time step
     alt(end+1) = y(1,i);
@@ -84,33 +86,39 @@ end
 
 % Plot graphs
 
-subplot(2,2,1) % plot as appropriate
+subplot(2,3,1) % plot as appropriate
 plot(time,alt)
 xlabel('Time (s)')
 ylabel('Altitude (m)')
 title('Altitude vs Time')
 grid
-subplot(2,2,2)
+subplot(2,3,2)
 plot(time,vel)
 xlabel('Time (s)')
 ylabel('Velocity (m s^-1)')
 grid
 title('Velocity vs Time')
-subplot(2,2,3)
+subplot(2,3,3)
 plot(time,res)
 xlabel('Time (s)')
 ylabel('Resultant acceleration (ms-2)')
 grid
 title('Resultant acceleration (ms-2)')
-subplot(2,2,4)
+subplot(2,3,4)
 plot(time,mach)
 title('Mach number')
 xlabel('Time (s)')
 ylabel('Mach number')
 grid
-% figure
-% plot(time,mass)
-% title('Mass')
-% xlabel('Time (s)')
-% ylabel('Mass (kg)')
-% grid
+subplot(2,3,5)
+plot(time,mass(1:end-1))
+title('Mass')
+xlabel('Time (s)')
+ylabel('Mass (kg)')
+grid
+subplot(2,3,6)
+plot(time,drag)
+title('Drag')
+xlabel('Time (s)')
+ylabel('Drag (N)')
+grid
