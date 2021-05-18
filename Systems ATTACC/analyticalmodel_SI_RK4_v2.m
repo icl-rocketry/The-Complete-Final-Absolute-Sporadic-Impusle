@@ -52,11 +52,11 @@ drag = [];
 for i = 1:length(tSteps)-1 % for full time range
     % determine local speed of sound and density
 %     if tSteps(i) < 0.744
-%         mass_flow = thrust_h(i)/(g*isp)+(2*1.292)/0.744;
+%         mass_flow(i) = thrust_h(i)/(g*isp)+(2*1.292)/0.744;
 %     else
-%         mass_flow = thrust_h(i)/(g*isp)
+%         mass_flow(i) = thrust_h(i)/(g*isp)
 %     end
-    mass_flow = thrust_h(i)/(g*isp);
+    mass_flow(i) = thrust_h(i)/(g*isp);
     if i == 1
         [~,a,~,rho] = atmosisa(0);
     else
@@ -76,7 +76,7 @@ for i = 1:length(tSteps)-1 % for full time range
     alt(end+1) = y(1,i);
     time(end+1) = tSteps(i);
     if mass(i) >= mass_final
-        mass(i+1) = mass(i) - mass_flow*ts;
+        mass(i+1) = mass(i) - mass_flow(i)*ts;
     else
         disp('nofuel')
         mass(i+1) = mass(i);
