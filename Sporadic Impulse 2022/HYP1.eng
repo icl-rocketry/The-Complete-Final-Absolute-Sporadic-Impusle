@@ -3,7 +3,7 @@
 ; @File: HYP1.eng, @Pts-I: 3, @Pts-O: 3, @Sm: 0, @CO: 5%
 ; @TI: 15448.38, @TIa: 15444.15, @TIe: 0.0%, @ThMax: 1300.0, @ThAvg: 1042.4, @Tb: 14.4
 ; Exported using ThrustCurveTool, www.ThrustGear.com
-HYPNOS 152 2348 4-6-8 7.483 15.783 ICLR
+HYPNOS 152 2348 4-6-8 1.483 9.483 ICLR
   1.0        1300.0
   13.4       800.0
   14.4       0
