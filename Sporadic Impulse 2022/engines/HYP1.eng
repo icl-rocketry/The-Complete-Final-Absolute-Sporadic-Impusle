@@ -1,0 +1,7 @@
+; @File: HYP1.eng, @Pts-I: 3, @Pts-O: 3, @Sm: 0, @CO: 5%
+; @TI: 13248.75, @TIa: 13248.12, @TIe: 0.0%, @ThMax: 2000.0, @ThAvg: 1903.009, @Tb: 6.962
+; Exported using ThrustCurveTool, www.ThrustGear.com
+N1903 127 488 4-6-8 0.999999 0.999999 ICLR
+  0.5        2000.0
+  6.75       2000.0
+  7.0        0.0
