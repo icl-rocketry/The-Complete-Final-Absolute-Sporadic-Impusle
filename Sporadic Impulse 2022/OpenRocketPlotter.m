@@ -7,6 +7,8 @@
 % are put into a nice-ish table for u to use if u ever need them though i
 % have no clue why we'd need some of them
 
+% --- please remember to move this somewhere nice on the git !!! ---
+
 clear; clc; close all
 
 % read data from csv file 
