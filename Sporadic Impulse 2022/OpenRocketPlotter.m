@@ -4,8 +4,8 @@
 % update: so it doesn't plot all the data (because im too lazy to
 % pre-generate a bunch of plots) but it does plot the kinda useful stuff
 % like trajectory, ground track and stability. The rest of the variables
-% are put into a nice-ish table for u to use if u ever need them though i
-% have no clue why we'd need some of them
+% are put into a nice-ish table for u to use if u ever need them though
+% ive no clue why we'd need some of them
 
 % --- please remember to move this somewhere nice on the git !!! ---
 
