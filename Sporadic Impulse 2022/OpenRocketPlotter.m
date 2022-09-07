@@ -91,3 +91,10 @@ legend({'Centre of Gravity','Centre of Pressure','Stability Margin'},'Location',
 box on;
 grid on;
 hold off
+
+% landing zone plot
+pos_east = [];
+pos_north = [];
+
+figure();
+plot()
