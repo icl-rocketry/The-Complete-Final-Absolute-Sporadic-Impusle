@@ -17,7 +17,7 @@ set(gca,'TickLabelInterpreter','latex')
 grid on
 
 % scaled to 2kN
-thrust_scaled = ((thrust-min(thrust))./max(thrust)).*2000;
+thrust_scaled = (thrust./max(thrust)).*2000;
 time_scaled = (time-min(time))./1000;
 
 figure()
