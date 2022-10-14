@@ -1,3 +1,4 @@
+%% 
 % this script should, if ive got variable names right, plot all the data we need from
 % openrocket so we dont need to always make new scripts to plot data for
 % reports nd design reviews nd stuff
@@ -16,9 +17,11 @@ clear; clc; close all
 % UNSELECT all comments (simulation descriptions, field descriptions and
 % flight events)
 
-filename = 'southeast_4vw_5deg.csv';
+filename = 'frr6.csv';
 data = readtable(filename);
 
+% u may need to chnage variable names here cus im stupid and made some
+% random variables like dynamic pressure in openrocket
 data.Properties.VariableNames = {'time','altitude','vert_vel','vert_acc','tot_vel',...
     'tot_acc','pos_east','pos_north','lat_dist','lat_dir','lat_vel','lat_acc','latitude',...
     'longitude','grav_acc','aoa','roll_rate','pitch_rate','yaw_rate','mass','prop_mass',...
@@ -27,7 +30,7 @@ data.Properties.VariableNames = {'time','altitude','vert_vel','vert_acc','tot_ve
     'normal_force_coeff','pitch_moment_coeff','yaw_moment_coeff','side_force_coeff',...
     'roll_moment_coeff','roll_forcing_coeff','roll_damping_coeff','pitch_damping_coeff',...
     'coriolis_coeff','ref_length','ref_area,','zenith','azimuth','v_wind','air_temp',...
-    'pressure_air','speed_of_sound','simulation_step_time','computation_time'};
+    'pressure_air','speed_of_sound','simulation_step_time','computation_time','dynamic pressure'};
 
 % trajectory plots
 figure()
