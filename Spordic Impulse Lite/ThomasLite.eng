@@ -1,0 +1,7 @@
+; @File: HYP2.eng, @Pts-I: 4, @Pts-O: 1, @Sm: 0, @CO: 5%
+; @TI: 0.0, @TIa: 0.0, @TIe: 0.0%, @ThMax: 0.0, @ThAvg: 0.0, @Tb: 7.0
+; Exported using ThrustCurveTool, www.ThrustGear.com
+ThomasLite 106 750 4-6-8 3.0 3.0 ICLR2
+  0.0        0.0
+  5.75       0.001
+  6.2          0.0

@@ -1,0 +1,8 @@
+; @File: HYP1.eng, @Pts-I: 3, @Pts-O: 3, @Sm: 0, @CO: 5%
+; @TI: 13248.75, @TIa: 13248.12, @TIe: 0.0%, @ThMax: 2000.0, @ThAvg: 1903.009, @Tb: 6.962
+; Exported using ThrustCurveTool, www.ThrustGear.com
+HYPLite 127 488 4-6-8 0.5 1.0 ICLR
+0.00         0.00
+0.15         1850.00
+6.00         1000.00
+6.20         0.00
